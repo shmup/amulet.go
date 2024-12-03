@@ -49,6 +49,10 @@ import "unsafe"
 // Returns true and the count of consecutive 8s if it's an amulet,
 // false and 0 otherwise.
 func IsAmulet(text string) (bool, int) {
+	if len(text) == 0 || len(text) > 64 {
+		return false, 0
+	}
+
 	cstr := C.CString(text)
 	defer C.free(unsafe.Pointer(cstr))
 
