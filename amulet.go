@@ -38,6 +38,16 @@ int check_amulet(const char* text) {
 import "C"
 import "unsafe"
 
+// IsAmulet determines if a string is an "amulet" by checking its SHA-256 hash.
+// A string is considered an amulet if its hash contains 4 or more consecutive '8' characters.
+// The input string must not exceed 64 characters in length.
+//
+// Example:
+//
+//	isAmulet, count := IsAmulet("test")
+//
+// Returns true and the count of consecutive 8s if it's an amulet,
+// false and 0 otherwise.
 func IsAmulet(text string) (bool, int) {
 	cstr := C.CString(text)
 	defer C.free(unsafe.Pointer(cstr))
