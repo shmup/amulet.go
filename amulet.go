@@ -1,40 +1,42 @@
 package amulet
 
-import "crypto/sha256"
+import (
+	"crypto/sha256"
+)
 
 func IsAmulet(text string) (bool, int) {
 	if len(text) == 0 || len(text) > 64 {
-		return false, 0
+		return false, 0 // Changed to return 0 for invalid cases
 	}
 
 	hash := sha256.Sum256([]byte(text))
-
-	// each byte becomes 2 hex chars
 	maxCount := 0
-	currentCount := 0
+	count := 0
 
-	// process two hex chars per byte directly
 	for _, b := range hash {
 		// check high nibble
 		if b>>4 == 0x8 {
-			currentCount++
+			count++
 		} else {
-			currentCount = 0
+			count = 0
 		}
-		if currentCount > maxCount {
-			maxCount = currentCount
+		if count > maxCount {
+			maxCount = count
 		}
 
 		// check low nibble
 		if b&0xF == 0x8 {
-			currentCount++
+			count++
 		} else {
-			currentCount = 0
+			count = 0
 		}
-		if currentCount > maxCount {
-			maxCount = currentCount
+		if count > maxCount {
+			maxCount = count
 		}
 	}
 
-	return maxCount >= 4, maxCount
+	if maxCount >= 4 {
+		return true, maxCount
+	}
+	return false, 0
 }
