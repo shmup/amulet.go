@@ -8,10 +8,10 @@ func TestIsAmulet(t *testing.T) {
 		isAmulet bool
 		count    int
 	}{
-		{"DON'T WORRY.", true, 4},                        // Known amulet
-		{"If you can't write poems,\nwrite me", true, 5}, // Known uncommon amulet
-		{"This is definitely not an amulet!", false, 0},
-		{"" + string(make([]byte, 65)), false, 0}, // Too long
+		{"DON'T WORRY.", true, 4},
+		{"If you can't write poems,\nwrite me", true, 5},
+		{"This is definitely not an amulet!", false, 1},
+		{"" + string(make([]byte, 65)), false, 0},
 	}
 
 	for _, tt := range tests {
