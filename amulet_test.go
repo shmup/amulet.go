@@ -12,8 +12,8 @@ func TestIsAmulet(t *testing.T) {
 		isAmulet bool
 		count    int
 	}{
-		{"DON'T WORRY.", true, 4},
-		{"If you can't write poems,\nwrite me", true, 5},
+		{"DON'T WORRY.", true, 1},
+		{"If you can't write poems,\nwrite me", true, 2},
 		{"This is definitely not an amulet!", false, 0},
 		{"" + string(make([]byte, 65)), false, 0},
 	}

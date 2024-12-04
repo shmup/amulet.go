@@ -36,7 +36,7 @@ func IsAmulet(text string) (bool, int) {
 	}
 
 	if maxCount >= 4 {
-		return true, maxCount
+		return true, maxCount - 3
 	}
 	return false, 0
 }

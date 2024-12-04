@@ -29,7 +29,7 @@ int check_amulet(const char* text) {
         if(hex[i] == '8') {
             int count = 1;
             while(i+count < strlen(hex) && hex[i+count] == '8') count++;
-            if(count >= 4) return count;
+            if(count >= 4) return count - 3;
         }
     }
     return 0;
@@ -60,5 +60,5 @@ func IsAmulet(text string) (bool, int) {
 
 	result := int(C.check_amulet(cstr))
 
-	return result >= 4, result
+	return result >= 1, result
 }
